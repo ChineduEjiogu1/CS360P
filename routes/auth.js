@@ -23,31 +23,42 @@ let db = new sqlite3.Database('passwords.db', (err) => {
   console.log('Connected to password db.');
 });
 
+db.get(sql, [user_name], (err, result) => {
+  if (err) {
+    throw err;
+  }
+  db.close();
+  // console.log(result.hash);
 
-bcrypt
-  .genSalt(saltRounds)
-  .then(salt => {
-    console.log(`Salt: ${salt}`);
+  if(typeof result === 'undefined'){
+    res.send("failed! 001");
+    res.redirect('/');
+  }
+  
+  bcrypt.compare(plainTextPassword1, result.hash ).then( function(answ){
+    console.log("test");
+    if (answ == true){
+      console.log("SUCCESS!!");
+      res.send("SUCCESS!");
+    }else{
+      console.log("FAILURE!!");
+      //res.send("failed to authenticate");
+      res.redirect('/');
+    }
 
-    return bcrypt.hash(plainTextPassword1, salt);
-  })
-  .then(hash => {
-    console.log(`Hash: ${hash}`);
 
-    db.all(sql, [user_name], (err, rows) => {
-      if (err) {
-        throw err;
-      }
-    
-      db.close();
-      console.log(`Hash: ${rows}`);
-      res.send("hash:" + JSON.stringify(rows));
-    
-    });
 
-  })
-  .catch(err => console.error(err.message));
+
+})
+.catch(err => console.error(err.message));
 
 });
+console.log("After db query");
+
+
+
+});
+
+
 
 module.exports = router;
