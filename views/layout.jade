@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.8.1/css/all.css', integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf', crossorigin='anonymous')
+  body
+    .login-box
+      form(method='post', action='/auth')
+        p(style='text-align: center;')
+          i.far.fa-user-circle.fa-7x
+        .textbox
+          i.fas.fa-user
+          input(type='text', placeholder='Username', name='user', value='')
+        .textbox
+          i.fas.fa-unlock-alt
+          input(type='Password', placeholder='Password', name='pass', value='')
+        input.btn(type='submit', name='', value='Sign in')
+
