@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.8.1/css/all.css', integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf', crossorigin='anonymous')
+  body
+  
+  table(border="1")
+    th selction
+    th cName
+    th classi
+    th class_s
+    th p_name
+    th c_amount
+    th s_amount
+    th class_t
+    th start_d
+    th end_d
+
+    each r in classes
+
+      tr
+        td
+          if r.cid == selection.cs2
+            input(type='checkbox' checked=true)
+          else
+            input(type='checkbox' checked=false)
+        td #{r.cName}
+        td #{r.classI}
+        td #{r.class_s}
+        td #{r.p_name}
+        td #{r.c_amount}
+        td #{r.s_amount}
+        td #{r.class_t}
+        td #{r.start_d}
+        td #{r.end_d}
+  
+  p #{selection.cs2}
+    //- each row in #{classes}
+  //-   row.cName
+

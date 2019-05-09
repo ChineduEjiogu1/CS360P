@@ -30,28 +30,24 @@ db.get(sql, [user_name], (err, result) => {
   db.close();
   // console.log(result.hash);
 
-  if(typeof result === 'undefined'){
-    res.send("failed! 001");
-    res.redirect('/');
-  }
+  if(typeof result === 'undefined' ){
+  //  res.send("failed! 001");
+    res.redirect('/?message=Wrong credentials');
+  }else{
   
-  bcrypt.compare(plainTextPassword1, result.hash ).then( function(answ){
-    console.log("test");
-    if (answ == true){
-      console.log("SUCCESS!!");
-      res.send("SUCCESS!");
-    }else{
-      console.log("FAILURE!!");
-      //res.send("failed to authenticate");
-      res.redirect('/');
-    }
-
-
-
-
-})
-.catch(err => console.error(err.message));
-
+    bcrypt.compare(plainTextPassword1, result.hash ).then( function(answ){
+      console.log("test");
+      if (answ == true){
+        console.log("SUCCESS!!");
+        res.redirect('/main');
+      }else{
+        console.log("FAILURE!!");
+        //res.send("failed to authenticate");
+        res.redirect('/?message=Wrong credentials');
+      }
+  })
+  .catch(err => console.error(err.message));
+  }
 });
 console.log("After db query");
 

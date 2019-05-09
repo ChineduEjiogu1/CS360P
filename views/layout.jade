@@ -2,13 +2,15 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.8.1/css/all.css', integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf', crossorigin='anonymous')
+    link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    
     .login-box
       form(method='post', action='/auth')
         p(style='text-align: center;')
           i.far.fa-user-circle.fa-7x
+          center &nbsp #{message}
         .textbox
           i.fas.fa-user
           input(type='text', placeholder='Username', name='user', value='')

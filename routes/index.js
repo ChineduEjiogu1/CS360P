@@ -4,8 +4,10 @@ var sqlite3 = require('sqlite3');
 
 /* GET home page. */
 router.get('/', function(req, res) {
+  let message = req.query.message;
+  
 
-  let db = new sqlite3.Database('students.db', (err) => {
+  let db = new sqlite3.Database('student2.db', (err) => {
     if (err) {
       console.error(err.message);
     }
@@ -17,11 +19,8 @@ router.get('/', function(req, res) {
     if (err) {
       throw err;
     }
-
-  //  rows.forEach((row) => {
-         // console.log(row.ID + "|" + row.STUDENT_NAME + "|" + row.DOB);
     
-    res.render('index', { title: 'Express', Students: rows });
+    res.render('index', { title: 'Express', Students: rows, message:message });
   //});
 
   
@@ -33,34 +32,6 @@ db.close();
 
 module.exports = router;
 
-
-
-// router.get('/', function(req, res) {
-
-//   let db = new sqlite3.Database('passwords.db', (err) => {
-//     if (err) {
-//       console.error(err.message);
-//     }
-//     console.log('Connected to password db.');
-//   });
- 
-//   db.all(sql, [], (err, rows) => {
-//     if (err) {
-//       throw err;
-//     }
-
-  
-//     // res.render('index', { title: 'Express', Students: rows });
- 
-
-  
-
-  
-// });
-// db.close();
-// });
-
- 
 
   
 //   rows.forEach((row) => {

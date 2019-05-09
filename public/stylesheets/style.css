@@ -1,19 +1,10 @@
- /* body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-} */ */
-
 
 body
 {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: url(images/background-calm-clouds-747964.jpg);
+    background-image: url(../../images/background-calm.jpg);
     background-size: cover;
     
 }
