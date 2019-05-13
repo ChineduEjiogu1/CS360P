@@ -1,4 +1,6 @@
 var express = require('express');
+var cookieParser = require('cookie-parser'); // in order to read cookie sent from client
+
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -9,7 +11,9 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var main = require('./routes/main');
+var logout = require('./routes/logout');
 var app = express();
+app.use(cookieParser("demo site"));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,7 +23,7 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/static', express.static('/pubic'));
 
@@ -27,6 +31,9 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/main', main);
+app.use('/logout', logout);
+
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

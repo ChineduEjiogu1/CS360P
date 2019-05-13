@@ -1,8 +1,8 @@
+PRAGMA foreign_keys = 1;
 DROP TABLE IF EXISTS CLASSES;
 
 CREATE TABLE CLASSES(
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-
+    cID INTEGER PRIMARY KEY AUTOINCREMENT,
     CLASS_NAME VARCHAR(50),
     CLASS_ID INTEGER,
     CLASS_SECTION VARCHAR(5),
@@ -104,7 +104,7 @@ INSERT INTO CLASSES(
        END_DATE
        )
     VALUES(
-       'Algebra 1', '101', 'B','Prof. Siddarth Malhotra', '3', '50', '9:30am - 11:00am', '1/29/2020', '5/29/2020');
+       'Algebra 1', '101', 'B','Prof. Siddarth Malhotra', '3', '50', '7:30pm - 9:00pm', '1/29/2020', '5/29/2020');
 
 INSERT INTO CLASSES(
     

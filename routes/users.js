@@ -15,7 +15,7 @@ let sql = 'INSERT INTO PASSWORDS (SALT_and_HASH_PASSWORD) VALUES (?)';
 const plainTextPassword1 = req.body.pass;
 const saltRounds = 10;
 
-let db = new sqlite3.Database('passwords.db', (err) => {
+let db = new sqlite3.Database('demo.db', (err) => {
   if (err) {
     console.error(err.message);
   }
