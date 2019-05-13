@@ -3,11 +3,13 @@ html
   head
     title= title
    link(rel='stylesheet', href='/stylesheets/style2.css')
-  body
+   
+  body(onload='getCState()')
 
   a(href='logout') Logout 
- 
-  table.content-table(align='center')
+  
+    
+  table.content-table(align='center',id="table1")
     thead
       tr
         th Selection
@@ -23,11 +25,20 @@ html
     tbody
     each r in classes
 
-      
+        
       tr
-     
         td
-          input(type='checkbox' checked=true)
+          - var flag = true
+          each rs in selection 
+            if r.cid == rs.cid 
+              input(type='checkbox', id=r.cid, name="cbox" ,checked=true, onclick='check()')
+              - flag=false
+              break
+          if(flag) 
+            input(type='checkbox', id=r.cid,  name="cbox", checked=false, onclick='check()')
+  
+        //- td
+        //-   input(type='checkbox' checked=true)
         td #{r.cName}
         td #{r.classI}
         td #{r.class_s}
@@ -38,38 +49,45 @@ html
         td #{r.class_t}
         td #{r.start_d}
         td #{r.end_d}
-        sumbit
+ 
+  p#text(style='display:none') Checkbox is CHECKED!
+  input(type='button', value= 'get ID', onclick='printBoxes()')
+  input(type='button', value= 'get ID2', onclick='printBoxes2()')
+  input(type='button', value= 'send me to dbm', onclick='compare_and_send()')
+  
+script(src="/javascripts/main_dbm.js") 
+
 
   //- if r.cid == selection.cs2
-          //-   input(type='checkbox' checked=true)
-          //- else
-          //-   input(type='checkbox' checked=false)  
+  //-           input(type='checkbox' checked=true)
+  //-         else
+            input(type='checkbox' checked=false)  
   
   //- p #{selection.cs2}
   //-   each row in #{classes}
   //-   row.cName
 
 
-table.content-table
-  thead
-    tr
-      th Rank
-      th Name
-      th Points
-      th Team
-  tbody
-    tr
-      td 1
-      td Domenic
-      td 88,110
-      td dcode
-    tr.active-row
-      td 2
-      td Sally
-      td 72,400
-      td Students
-    tr
-      td 3
-      td Nick
-      td 52,300
-      td dcode
+//- table.content-table
+//-   thead
+//-     tr
+//-       th Rank
+//-       th Name
+//-       th Points
+//-       th Team
+//-   tbody
+//-     tr
+//-       td 1
+//-       td Domenic
+//-       td 88,110
+//-       td dcode
+//-     tr.active-row
+//-       td 2
+//-       td Sally
+//-       td 72,400
+//-       td Students
+//-     tr
+//-       td 3
+//-       td Nick
+//-       td 52,300
+//-       td dcode

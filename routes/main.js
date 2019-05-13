@@ -8,7 +8,17 @@ let result1;
 let result2;
 /* GET users listing. */
 
-router.get('/', function(req, res) {
+function nocache(req, res, next) {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next();
+}
+router.get('/', nocache, sendContent);
+//  router.get('/', function(req, res) {
+
+function sendContent(req, res) {
+ 
   var cookie = req.signedCookies;
   // var cookie = req.cookies;
   console.log("in main.js cookie is:",cookie);
@@ -26,7 +36,9 @@ router.get('/', function(req, res) {
     //res.cookie('MyCookie','wow!!,woo!!',{maxAge: 1000 * 60 * 1});
           
         let sql = ' select cID as cid, class_name as cName,  CLASS_ID as classI, CLASS_SECTION as class_s, PROFESSOR_NAME as p_name, CREDIT_AMOUNT as c_amount, SEAT_AMOUNT as s_amount, CLASS_TIME as class_t, START_DATE as start_d, END_DATE as end_d from classes';
-        // let sql2 = ' select class_select as cs1, class_select2 as cs2, class_select3 as cs3 from students where id=1';
+        
+        
+        let sql2 = '  select class_id as cid  from REGISTRATION WHERE user_id = (?)';
 
 
         let db = new sqlite3.Database('demo.db', (err) => {
@@ -44,24 +56,23 @@ router.get('/', function(req, res) {
           console.log(JSON.stringify(result));
           result1=result;
         });
-        // db.get(sql2, [], (err, result) => {
-        //   if (err) {
-        //     throw err;
-        //   }
-        
-        //   console.log(JSON.stringify(result));
-        //   result2=result;
-        // });
+        db.all(sql2, [cookie.cookieName], (err, result) => {
+          if (err) {
+            throw err;
+          }
+          result2=result;
+        });
 
         db.close();
         console.log("After db query");
-        console.log(JSON.stringify(result2));
+        console.log("result2 :",JSON.stringify(result2));
 
         res.render('main', { title: 'Express', classes: result1, selection: result2 });
   }
-      
      
-});
+};      
+     
+// });
 
 
 

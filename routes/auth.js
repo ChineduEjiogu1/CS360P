@@ -6,7 +6,7 @@ var bcrypt = require('bcrypt');
 var sqlite3 = require('sqlite3');
 
 let options = {
-  maxAge: 1000 * 60 * 1, // would expire after 15 minutes
+  maxAge: 1000 * 60 * 60, // would expire after 15 minutes
   httpOnly: true, // The cookie only accessible by the web server
   signed: true // Indicates if the cookie should be signed
 }

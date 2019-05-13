@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var auth = require('./routes/auth');
 var main = require('./routes/main');
 var logout = require('./routes/logout');
+var dbm = require('./routes/dbm');
 var app = express();
 app.use(cookieParser("demo site"));
 
@@ -32,9 +33,8 @@ app.use('/users', users);
 app.use('/auth', auth);
 app.use('/main', main);
 app.use('/logout', logout);
-
-
-
+app.use('/dbm', dbm);
+// app.disable('view cache');
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
