@@ -1,4 +1,4 @@
 # CS360P - Software Security Class
-class_scheleduler project 
+Class Scheduler Project 
 
 Helped by Professor Bulat Filin (Medgar Evers College)
